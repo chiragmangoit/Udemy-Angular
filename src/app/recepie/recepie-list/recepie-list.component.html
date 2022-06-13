@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mx-2">
+      <button class="btn btn-success">New recepie</button>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="container mx-auto mt-4">
+  <div class="row">
+    <app-recepie-item
+      class="col-md-3 my-2"
+      *ngFor="let recepie of recepies"
+      [recepies]="recepie"
+      (showDescription)="showDesc($event, recepie)"
+    ></app-recepie-item>
+  </div>
+</div>

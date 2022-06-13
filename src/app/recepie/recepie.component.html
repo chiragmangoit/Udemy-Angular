@@ -1,0 +1,3 @@
+<app-recepie-list (descValue) = "showDesc($event)" ></app-recepie-list>
+<hr>
+<app-recepie-details *ngIf="descValue" [recepieValue] = "recepieValue"></app-recepie-details>
