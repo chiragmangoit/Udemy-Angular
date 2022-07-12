@@ -1,21 +1,55 @@
 <div class="row">
   <div class="col-xs-12">
-    <form action="">
+    <form (ngSubmit)="getIngredients(form)" #form="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" class="form-control" #inputName>
+          <input
+            type="text"
+            id="name"
+            name="ingName"
+            class="form-control"
+            ngModel
+            required
+          />
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
-          <input type="number" id="amount" class="form-control" #inputAmount>
+          <input
+            type="number"
+            id="amount"
+            name="ingAmount"
+            class="form-control"
+            ngModel
+            required
+            pattern="^[1-9]+[0-9]*$"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 mt-2">
-          <button  class = "btn btn-success mx-2" type="button" (click)="getIngredients(inputName.value,inputAmount.value)">Add</button>
-          <button  class = "btn btn-danger " type="button">Delete</button>
-          <button  class = "btn btn-primary mx-2" type="button">Clear</button>
+          <button
+            [disabled]="!form.valid"
+            class="btn btn-success mx-2"
+            type="submit"
+          >
+            {{ !editMode ? "Add" : "Update" }}
+          </button>
+          <button
+            *ngIf="editMode"
+            class="btn btn-danger"
+            type="button"
+            (click)="onClickDelete()"
+          >
+            Delete
+          </button>
+          <button
+            class="btn btn-primary mx-2"
+            type="button"
+            (click)="onClearForm()"
+          >
+            Clear
+          </button>
         </div>
       </div>
     </form>

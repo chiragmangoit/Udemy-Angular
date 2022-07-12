@@ -1,4 +1,6 @@
-import { Component, OnInit, Input , Output ,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RecepieService } from 'src/app/services/recepie.service';
+import { Recepie } from '../../recepie.model';
 
 @Component({
   selector: 'app-recepie-item',
@@ -7,15 +9,12 @@ import { Component, OnInit, Input , Output ,EventEmitter } from '@angular/core';
 })
 export class RecepieItemComponent implements OnInit {
 
-  @Input() recepies;
-  @Output() showDescription = new EventEmitter<string>();
-  
-  constructor() { }
+  @Input() recepies:Recepie;
+  @Input() index:number;  
+  constructor(private recepieSevice:RecepieService) { }
 
   ngOnInit() {
   }
-  onClickDesc(desc:string) {
-    this.showDescription.emit(desc);
-  }
+  
 
 }

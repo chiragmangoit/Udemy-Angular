@@ -7,16 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecepieComponent implements OnInit {
 
-  descValue = '';
-  recepieValue = {};
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit() {
-  }
-
-  showDesc(comp:{value:string,recepie:{}}){
-    this.descValue = comp.value;
-    this.recepieValue = comp.recepie;
   }
   
 }
