@@ -1,0 +1,50 @@
+<p class="alert alert-danger" *ngIf="error">
+    {{error}}
+</p>
+<div *ngIf="isLoading" class="text-center">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<form (ngSubmit)="onSubmit()" #form="ngForm" *ngIf="!isLoading" >
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input
+      type="email"
+      id="form2Example1"
+      class="form-control"
+      name="email"
+      ngModel
+      required
+      email
+    />
+    <label class="form-label" for="form2Example1">Email address</label>
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input
+      type="password"
+      id="form2Example2"
+      class="form-control"
+      name="password"
+      ngModel
+      required
+      minlength="6"
+    />
+    <label class="form-label" for="form2Example2">Password</label>
+  </div>
+
+  <!-- Submit button -->
+  <button [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block mb-4">
+    {{ register ? "Sign in" : "Register" }}
+  </button>
+
+  <!-- Register buttons -->
+  <div class="text-center">
+    <p>
+      {{ register ? " Not a member?" : " Already a member?" }}
+      <a style="cursor: pointer" (click)="onRegister()">{{
+        register ? "Register" : "Sign in"
+      }}</a>
+    </p>
+  </div>
+</form>

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthComponent } from './auth/auth.component';
 import { RecepieDetailsComponent } from './recepie/recepie-details/recepie-details.component';
 import { RecepieEditComponent } from './recepie/recepie-edit/recepie-edit.component';
 import { RecepieStartComponent } from './recepie/recepie-start/recepie-start.component';
@@ -13,6 +15,7 @@ const appRoutes: Routes = [
   {
     path: 'recepies',
     component: RecepieComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
@@ -32,6 +35,7 @@ const appRoutes: Routes = [
       },
     ],
   },
+  { path: 'auth', component: AuthComponent },
   { path: 'shopping', component: ShopingComponent },
 ];
 @NgModule({

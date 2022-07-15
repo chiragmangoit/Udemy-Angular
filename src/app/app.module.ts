@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,9 +14,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecepieStartComponent } from './recepie/recepie-start/recepie-start.component';
 import { RecepieEditComponent } from './recepie/recepie-edit/recepie-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
-  declarations: [			
+  declarations: [
     AppComponent,
     HeaderComponent,
     ShopingComponent,
@@ -27,7 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RecepieDetailsComponent,
     RecepieStartComponent,
     RecepieEditComponent,
-   ],
+    AuthComponent,
+    LoadingSpinnerComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -35,7 +40,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
